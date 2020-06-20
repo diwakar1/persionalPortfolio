@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Kalam|Patrick+Hand|Satisfy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Satisfy&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-white: #f0f0f0;
+            --main-red: #be3144;
+            --main-blue: #45567d;
+            --main-gray: #303841;
+
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        *,
+        *::before,
+        *::after {
+
+            box-sizing: inherit;
+        }
+
+        html {
+            box-sizing: border-box;
+
+            /* Set font size for easy rem calculations
+             * default document font size = 16px, 1rem = 16px, 100% = 16px
+             * (100% / 16px) * 10 = 62.5%, 1rem = 10px, 62.5% = 10px
+            */
+            font-size: 62.5%;
+            scroll-behavior: smooth;
+        }
+
+
+
+        body {
+            font-size: 1.8rem;
+            line-height: 1.7;
+            font-weight: 450;
+            color:white;
+
+        }
+
+
+
+
+        .navbar {
+            height: 70px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(189, 15, 15, 0.856);
+            color: white;
+        }
+
+        .nav-list {
+            display: flex;
+            margin-right: 20px;
+            justify-content: flex-end;
+            list-style: none;
+        }
+
+
+
+        .nav-list a {
+            display: block;
+            padding: 15px 20px 20px 20px;
+            font-size: 2.2rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .nav-list a:hover {
+            background: steelblue;
+
+
+        }
+
+
+        .welcome-section {
+            width: 100%;
+            height: 100vh;
+            background: rgba(12, 16, 17, 0.932);
+
+
+        }
+
+        .welcome-section h1 {
+            font-family: 'Satisfy', cursive;
+            font-family: 'Patrick Hand', cursive;
+            font-family: 'Kalam', cursive;
+            position: absolute;
+            color: white;
+            left: 40%;
+            margin-left: -50px;
+            top: 50%;
+            font-size: 4.24rem;
+            bottom: 50%;
+            padding: 10px;
+
+        }
+
+        .welcome-section p {
+
+            position: absolute;
+            color: rgb(161, 34, 44);
+            left: 45%;
+            margin-left: -50px;
+            top: 59%;
+            font-size: 3.1rem;
+            bottom: 41%;
+            padding: 10px;
+            font-family: 'Satisfy', cursive;
+        }
+
+
+        .projects-section {
+            width: 100%;
+            height: auto;
+            background:rgb(102, 7, 190);
+            z-index: 1;
+            display: grid;
+            grid-template-columns: .5fr 6fr .5fr;
+            grid-template-rows: 1fr 4fr 1fr;
+            grid-template-areas: ". top ."
+                ". middle ."
+                ". bottom .";
+            grid-gap: 0;
+
+        }
+
+        .top {
+            grid-area: top;
+
+        }
+
+        .top p {
+            text-align: center;
+            font-size: 3.8rem;
+            padding: 10px;
+            margin: 10px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .middle {
+            grid-area: middle;
+            display: flex;
+            justify-content: stretch;
+
+
+
+        }
+
+        #tribute_page {
+            width: 25%;
+            margin-right: 10px;
+            align-self: stretch;
+            background-color: black;
+
+
+        }
+
+        #survey_form {
+            width: 25%;
+            margin-right: 10px;
+            background-color: black
+        }
+
+        #product_page {
+            width: 25%;
+            margin-right: 10px;
+            background-color: black;
+        }
+
+        #technical_page {
+            width: 25%;
+            background-color: black;
+
+        }
+
+        .bottom {
+            grid-area: bottom;
+        }
+
+
+
+
+
+
+
+        a {
+            text-decoration: none;
+            color: #f0f0f0;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 80%;
+            object-fit: fill;
+
+
+        }
+
+        .project-title {
+            font-size: 2rem;
+            padding: 2rem 0.5rem;
+            margin-left: 50px;
+
+
+        }
+
+        .code {
+            color: var(--main-gray);
+            font-weight: 1000;
+            transform: translateX(0px);
+            transition: color .2s ease-out;
+
+
+
+        }
+
+        .project:hover .code {
+            color: var(--main-red);
+            transform: translateX(10px);
+
+
+        }
+
+        .btn {
+            position: relative;
+            display: inline-block;
+            left: 40%;
+            right: 50%;
+            margin-top: 20px;
+            border-radius: 5px;
+            padding: 10px 25px;
+
+
+        }
+
+        .btn-show-all:hover {
+            background: var(--main-red);
+
+        }
+
+        .btn-show-all {
+            font-size: 2.1rem;
+            background: var(--main-gray);
+            transition: background 0.1s ease-out;
+        }
+
+
+        .btn-show-all:hover>i {
+            transform: translateX(10px);
+        }
+
+        .btn-show-all>i {
+            margin-left: 10px;
+            transform: translateX(0);
+            transition: transform 0.2s ease-out;
+        }
+
+
+
+        .contact-section {
+            width: 100%;
+            height: 100vh;
+            background: rgba(12, 16, 17, 0.932);
+            display: grid;
+            align-items: center;
+            justify-items: center;
+
+        }
+
+        .contact-title-wrapper {
+            align-self: end;
+        }
+
+        .contact-wrapper {
+            margin-top: 30px;
+            padding-right: 7px;
+            align-self: start;
+            justify-self: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+            grid-template-rows: auto;
+            width: 80%;
+            grid-gap: 0;
+            justify-items: center;
+            align-items: center;
+
+        }
+        .contact-line{           
+            border: 2px solid red;
+            width: 100%;
+            align-self:center ;
+        }
+        .footer{
+            margin: -20px;
+            align-self: flex-start;
+            display: flex;        
+            width: 100%;
+            height: 60%;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 10px;
+        }
+        .footer-last{
+            margin-right: 10px;
+           
+        }
+
+
+
+        .facebook-section {
+            grid-column: 1/2;
+            grid-row: 1/2;
+            align-self: end;
+        }
+
+        .facebook-section:hover {
+            transform: translateY(10px);
+            transition: transform .5s ease-out;
+
+        }
+
+        .github-section {
+            grid-column: 2/3;
+            grid-row: 1/2;
+
+        }
+
+        .github-section:hover {
+            transform: translateY(10px);
+            transition: transform .5s ease-out;
+
+        }
+
+        .twitter-section {
+            grid-column: 3/4;
+            grid-row: 1/2;
+        }
+
+        .twitter-section:hover {
+            transform: translateY(10px);
+            transition: transform .5s ease-out;
+        }
+
+        .mail-section {
+            grid-column: 4/5;
+            grid-row: 1/2;
+        }
+
+        .mail-section:hover {
+            transform: translateY(10px);
+            transition: transform .5s ease-out;
+        }
+
+        .phone-section {
+            grid-column: 5/6;
+            grid-row: 1/2;
+        }
+
+        .phone-section:hover {
+            transform: translateY(10px);
+            transition: transform .5s ease-out;
+        }
+
+        .contact-section h1 {
+            font-size: 50px;
+            font-weight: 1000;
+            color: var(--main-white);
+        }
+
+        .contact-section p {
+            margin-left: 30px;
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--main-white);
+        }
+
+        .contact-title {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        @media(max-width: 1500px) {
+            .contact-wrapper {
+                width: 100%;
+            }
+        }
+
+        @media(max-width: 1100px) {
+            .project-title {
+                margin-left: 10px;
+
+            }
+
+            .contact-wrapper {
+                width: 100%
+            }
+        }
+
+        @media(max-width: 800px) {
+            .middle {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+
+
+            }
+
+            #tribute_page {
+                width: 100%;
+                margin-top: -350px;
+            }
+
+            #survey_form {
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            #product_page {
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            #technical_page {
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            .project-title {
+                margin-left: 100px;
+            }
+
+            .contact-wrapper {
+                width: 100%;
+            }
+
+
+        }
+
+        @media(max-width:650px) {
+            #tribute_page {
+                margin-top: -200px;
+            }
+
+            .welcome-section h1 {
+
+
+                margin-left: 100px;
+                left: 0;
+
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar" class="navbar">
+        <ul class="nav-list">
+            <li>
+                <a href="#welcome-section">About</a>
+            </li>
+            <li>
+                <a href="#projects">work</a>
+
+            </li>
+            <li>
+                <a href="#profile-link">Contact</a>
+
+            </li>
+        </ul>
+    </nav>
+
+
+    <section id="welcome-section" class="welcome-section">
+
+        <h1>Hey I am Diwakar</h1>
+        <p> a web developer</p>
+    </section>
+    <section id="projects" class="projects-section">
+        <div class="top">
+            <p>These are some of my projects.</p>
+        </div>
+        <div class="project-tile  middle">
+            <div id="tribute_page">
+                <a href="./FreeCodecampHtml1.html" target="_blank" class="tribute_link project">
+                    <img class="project-image" src="./Tribute2.PNG" alt="Tribute pages">
+
+
+
+                    <p class="project-title">
+                        <span class="code">&lt;</span>
+                        Tribute page
+                        <span class="code">&gt;</span>
+                    </p>
+                </a>
+            </diV>
+            <div id=survey_form>
+                <a href="./SurveyForm.html" target="_blank" class="survey_link project">
+                    <img class="project-image" src="./Survey-form.PNG" alt="survey pages">
+                    <p class="project-title">
+                        <span class="code">&lt;</span>
+                        Form page
+                        <span class="code">&gt;</span>
+                    </p>
+                </a>
+            </div>
+            <div id="product_page">
+                <a href="./ProductLandingPage.html" target="_blank" class="survey_link project">
+                    <img class="project-image" src="./LandingPage.PNG" alt="survey pages">
+
+                    <p class="project-title">
+                        <span class="code">&lt;</span>
+                        Survey page
+                        <span class="code">&gt;</span>
+                    </p>
+                </a>
+            </div>
+            <div id="technical_page">
+                <a href="./TechnicalDocumentationPage.html" target="_blank" class="technical_link  project">
+                    <img class="project-image" src="./Technical.PNG" alt="Tectional pages">
+
+
+
+                    <p class="project-title">
+                        <span class="code">&lt;</span>
+                        Technical page
+                        <span class="code">&gt;</span>
+                    </p>
+                </a>
+            </div>
+            <div>
+
+
+            </div>
+        </div>
+        <div class="bottom">
+            <a href="file:///C:/Users/Diwakar%20Sharma/Documents/
+            WebProjectsFreeCodeCamp/PersonalPortfolioWebpage.html" class="btn btn-show-all" target="_blank">show all
+                <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+    </section>
+    <section id="profile-section" class="contact-section">
+        <div class="contact-title-wrapper">
+            <h1> Let's work together</h1>
+            <p>How do you take your cofeee? </p>
+        </div>
+        <div class="contact-wrapper">
+            <a href="https://github.com/diwakar1" class="facebook-section">
+                <P class="contact-title">
+                    <i class="fab fa-facebook-square"></i>
+                    <span class="facebook-title">Facebook</span>
+                </P>
+
+            </a>
+            <a id ='profile-link' href="https://github.com/diwakar1" target = "_blank" class="github-section">
+                <P class="contact-title">
+                    <i class="fab fa-github"></i>
+                    <span class="github-title">Github</span>
+                </P>
+
+            </a>
+            <a href="" class="twitter-section">
+                <P class="contact-title">
+                    <i class="fab fa-twitter"></i>
+                    <span class="twitter-title">Twitter</span>
+                </P>
+
+            </a>
+            <a href="" class="mail-section">
+                <P class="contact-title">
+                    <i class="fas fa-at"></i>
+                    <span class="mail-title">Send a mail</span>
+                </P>
+
+            </a>
+            <a href="" class="phone-section">
+                <P class="contact-title">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span class="phone-title">call me</span>
+                </P>
+
+            </a>
+
+
+        </div>
+        <div class = "contact-line">
+
+        </div>
+        <div class ="footer">
+            <div class="footer-content">
+                <p>**This is the portfolio to meet the standards of free code camp.</p>
+            </div>
+            <div class="footer-last">
+                @createdbyDiwakarSharma
+                <i  href = "" class= "fa fa-fas-radio" ></i>
+            </div>
+        </div>
+    </section>
+
+
+
+
+</body>
+
+</html>
